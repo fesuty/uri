@@ -12,7 +12,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 1.5;
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
@@ -26,7 +26,7 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-const geometry = new THREE.BoxGeometry();
+const geometry = new THREE.SphereGeometry();
 const material = new THREE.MeshNormalMaterial({ wireframe: false });
 
 const cube = new THREE.Mesh(geometry, material);
