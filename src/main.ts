@@ -1,5 +1,6 @@
 import "./style.css";
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const scene = new THREE.Scene();
 
@@ -14,6 +15,10 @@ camera.position.z = 1.5;
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
 
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -31,6 +36,7 @@ scene.add(cube);
 function animate() {
   requestAnimationFrame(animate);
 
+  controls.update();
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
 
